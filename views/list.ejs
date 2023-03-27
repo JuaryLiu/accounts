@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        section {
+            width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .list {
+            width: 800px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            margin: 20px 0;  
+        }
+        .list-time {
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px;
+            color: #f40;
+        }
+        .list-content {
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .lable {
+            height: 20px;
+            padding: 0 10px;
+            line-height: 20px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .lable-warning {
+            background: rgb(236, 236, 8);
+        }
+        .lable-success {
+            background: rgb(23, 185, 74);
+        }
+        .list-warning {
+            background:rgb(145, 211, 217) ;
+        }
+        .list-success {
+            background:rgb(12, 217, 91) ;
+        }
+        a {
+            text-decoration: none;
+            color: red;
+        }
+        footer a {
+            margin: 0 auto;
+            display: block;
+            width: 200px;
+            height: 50px;
+            background: skyblue;
+            text-align: center;
+            color: #fff;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+  <section>
+        <h1>记账本</h1>
+        <form method="post" action="/logout">
+            <button>退出</button>
+        </form>
+        <hr>
+        <% accounts.forEach(item => { %>
+            <div class="list ">
+                <div class="list-time <%= item.type === '-1'? 'list-warning': 'list-success' %>">
+                    <span><%=moment(item.time).format('YYYY-MM-DD') %></span>
+                </div>
+                <div class="list-content">
+                    <span><%= item.title%></span>
+                    <span class="lable <%= item.type === '-1'? 'lable-warning': 'lable-success' %>"><%= item.type === '-1'? '支出': '收入' %></span>
+                    <span><%= item.account%></span>
+                    <a  class="btn" href="/account/<%= item._id %>"><span>删除</span></a>
+                </div>
+            </div>
+        <%}) %>
+        <footer>
+            <a  href="/account/create">去添加</a>
+        </footer>
+  </section>
+  <script>
+    document.querySelectorAll('.btn').forEach(item => {
+        item.addEventListener('click',(e)=> {
+            if(confirm('您确定要删除吗？')) {
+                return true
+            } else {
+                e.preventDefault()
+            }
+        })
+    })
+  </script>
+</body>
+</html>

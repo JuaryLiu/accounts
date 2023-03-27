@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        section {
+            width: 800px;
+            margin: 50px auto;
+        }
+        p {
+            margin: 5px 0;
+            font-weight: 700;
+        }
+        input,
+        select,
+        textarea,
+        button {
+            width: 800px;
+            height:40px;
+            margin: 10px 0;
+            border: 1px solid gray;
+            border-radius: 10px;
+            outline: none;
+            line-height: 40px;
+        }
+        input,
+        textarea {
+            text-indent:2em
+        }
+        button {
+            background: skyblue;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>添加记录</h1>
+        <hr>
+        <form action="/account" method="post">
+            <p>事项</p>
+            <input type="text" name="title">
+            <p>发生时间</p>
+            <input type="date" name="time">
+            <p>类型</p>
+            <select name="type" id="">
+                <option selected value="-1">支出</option>
+                <option value="1">收入</option>
+            </select>
+            <p>金额</p>
+            <input type="number" name="account">
+            <p>备注</p>
+            <textarea name="remarks" cols="30" rows="10"></textarea>
+            <hr>
+            <button>添加</button>
+        </form>
+    </section>
+</body>
+</html>
